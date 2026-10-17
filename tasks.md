@@ -3,11 +3,15 @@
 ## Implemented
 - Rebrand visible React screens to EDPIX while preserving database names, auth storage and URLs.
 - Owner-supplied plum/lavender/mauve/blush palette, DM Sans/Manrope typography, matching particles and crystal colors.
-- Existing routes retained; whiteboard route added with editable cards, coordinates, undo, notes, device save and JSON export.
+- Existing routes retained; whiteboard route added with editable cards, coordinates, undo, notes, cloud save/resume, legacy device-draft recovery and JSON export.
 - Authenticated AI endpoint source with server-only credentials, validated output and daily quota.
 
+## Backend repair
+- Supabase was INACTIVE, causing auth outages. Restored the project; health/settings now return HTTP 200, email signup enabled with confirmation required.
+- Applied cloud board/usage migration, passed ownership and quota SQL tests and deployed authenticated tutor endpoint. Cloud board saving is now enabled.
+
 ## Blocked / not claimed complete
-- Supabase SQL endpoint timed out twice on 17 October. New storage/usage schema could not be confirmed/applied. SQL is in supabase/pending. Do not enable VITE_TUTOR_CLOUD_ENABLED until migration, RLS tests and function deployment pass.
+- Mail delivery and actual user login remain unverified end-to-end; no user password or OTP is available in this test environment.
 - AI credentials GEMINI_API_KEY and GEMINI_MODEL have not been supplied/configured or live-tested. No mock AI response is displayed.
 - Full document ingestion, realtime voice, stroke drawing, diagram connectors, synchronized speech/animation, moderation/usage admin and curriculum expansion remain unimplemented.
 - Browser QA unavailable in this session. No authenticated end-to-end pass is claimed.

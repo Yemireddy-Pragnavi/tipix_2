@@ -1,6 +1,6 @@
-/* Learning pages inherit the existing TIPIX workspace theme and navigation. */
-.learning-workspace{--learning-text:#e8edf9;--learning-accent:#c3d1f5;--learning-highlight:#293149}
-.learning-workspace input:not([type=radio]):not([type=checkbox]){background:#222737;color:var(--learning-text);border:1px solid var(--w-line);border-radius:9px;padding:11px 13px;font:inherit;max-width:100%}
+/* Learning pages inherit the existing EDPIX workspace theme and navigation. */
+.learning-workspace{--learning-text:#efecf5;--learning-accent:#d7ceea;--learning-highlight:#481f53}
+.learning-workspace input:not([type=radio]):not([type=checkbox]){background:#391841;color:var(--learning-text);border:1px solid var(--w-line);border-radius:9px;padding:11px 13px;font:inherit;max-width:100%}
 .learning-workspace input[type=radio],.learning-workspace input[type=checkbox]{accent-color:var(--w-blue);width:18px;height:18px;flex-shrink:0}
 .learning-workspace fieldset{border:0;padding:0;margin:20px 0;min-width:0}
-.learning-workspace :focus-visible{outline:2px solid #92a7ff;outline-offset:4px}
+.learning-workspace :focus-visible{outline:2px solid #c1b3de;outline-offset:4px}

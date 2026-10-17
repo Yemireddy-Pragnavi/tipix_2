@@ -7,7 +7,7 @@
   background: repeating-linear-gradient(
     48deg,
     transparent 0 85px,
-    #9db0ff03 86px 87px
+    #c7bae203 86px 87px
   );
 }
 .t-atmosphere canvas {
@@ -26,9 +26,9 @@
   background: conic-gradient(
     from 156deg at 50% 0,
     transparent,
-    #8198ed20 10deg,
-    #bfcfff2c 22deg,
-    #5266eb15 37deg,
+    #ad9ad420 10deg,
+    #dad2ec2c 22deg,
+    #9178c515 37deg,
     transparent 49deg
   );
   filter: blur(28px);
@@ -40,7 +40,7 @@
   left: calc(50% - 490px);
   width: 980px;
   height: 750px;
-  background: radial-gradient(ellipse, #5266eb29, transparent 67%);
+  background: radial-gradient(ellipse, #9178c529, transparent 67%);
   animation: t-haze 10s ease-in-out infinite alternate;
 }
 .t-circuit {
@@ -48,16 +48,16 @@
   top: 470px;
   width: calc(50% - 290px);
   height: 150px;
-  border-bottom: 1px solid #859cff45;
+  border-bottom: 1px solid #b9aada45;
 }
 .t-circuit-left {
   left: 0;
-  border-right: 1px solid #859cff45;
+  border-right: 1px solid #b9aada45;
   border-bottom-right-radius: 36px;
 }
 .t-circuit-right {
   right: 0;
-  border-left: 1px solid #859cff45;
+  border-left: 1px solid #b9aada45;
   border-bottom-left-radius: 36px;
 }
 .t-circuit:after {
@@ -66,8 +66,8 @@
   bottom: -2px;
   width: 65px;
   height: 2px;
-  background: linear-gradient(90deg, transparent, #b7c7ff, transparent);
-  box-shadow: 0 0 12px #718bff;
+  background: linear-gradient(90deg, transparent, #d6cde9, transparent);
+  box-shadow: 0 0 12px #ae9cd4;
   animation: t-signal 6s ease-in-out infinite;
 }
 .t-circuit-right:after {
@@ -80,15 +80,15 @@
   top: 106px;
   z-index: 2;
   font-size: 11px;
-  color: #a7b3d5;
-  border: 1px solid #9aafef25;
+  color: #b9b1cb;
+  border: 1px solid #bcaddc25;
   padding: 7px 11px;
   border-radius: 20px;
-  background: #16162080;
+  background: #220f2780;
 }
 .t-motion-control:hover {
-  color: #edf0ff;
-  border-color: #9aafef66;
+  color: #f5f2fa;
+  border-color: #bcaddc66;
 }
 .is-paused * {
   animation-play-state: paused !important;

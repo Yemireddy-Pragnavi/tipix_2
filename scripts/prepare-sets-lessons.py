@@ -6,7 +6,7 @@ for x in d:
  assert all(x[k].strip() for k in ['goal','simple','detail','formula','worked','real','mistakes'])
  assert len(x['checks'])==3
  for q in x['checks']:assert 0<=q['answer']<len(q['options']) and len(set(q['options']))==len(q['options']) and q['explanation']
-print('''-- Original TIPIX Sets lessons; no changes to existing lessons, attempts or scoring.
+print('''-- Original EDPIX Sets lessons; no changes to existing lessons, attempts or scoring.
 -- Lesson mini-checks use the existing saved learning-check API and award no exam points.
 do $import$ declare d jsonb:=$data$'''+json.dumps(d,ensure_ascii=False)+'''$data$;x jsonb;q jsonb;cid uuid;tid uuid;vid uuid;blocks jsonb;n integer;heading text;body text;begin
 select id into strict vid from public.academic_curriculum_versions where class_level=11 and subject='Mathematics' and board='NCERT' and academic_year='2026-27';
@@ -23,9 +23,9 @@ for x in select * from jsonb_array_elements(d) loop
  n:=6;
  for q in select * from jsonb_array_elements(x->'checks') loop
   n:=n+1;
-  insert into public.academic_learning_tasks(concept_id,position,title,blocks,check_prompt,check_options) values(cid,n,'Practice check '||(n-6),jsonb_build_array(jsonb_build_object('type','paragraph','text','Source: TIPIX Original. Answer this concept check, then read the reasoning. Learning checks save to your lesson progress; they do not award leaderboard points.')),q->>'prompt',q->'options') returning id into tid;
+  insert into public.academic_learning_tasks(concept_id,position,title,blocks,check_prompt,check_options) values(cid,n,'Practice check '||(n-6),jsonb_build_array(jsonb_build_object('type','paragraph','text','Source: EDPIX Original. Answer this concept check, then read the reasoning. Learning checks save to your lesson progress; they do not award leaderboard points.')),q->>'prompt',q->'options') returning id into tid;
   insert into tipix_private.academic_task_keys(task_id,answer,explanation) values(tid,(q->>'answer')::integer,q->>'explanation');
  end loop;
- update public.academic_concepts set lesson=x->>'simple',lesson_rights_reference='TIPIX Original: authored explanations and independently checked finite-set examples, 24 September 2026. No NCERT text or external questions copied.',published=true,classification_reference=classification_reference||jsonb_build_object('content_source','TIPIX Original','content_check','Authored examples and answers checked; curriculum decomposition remains pending editorial review') where id=cid;
+ update public.academic_concepts set lesson=x->>'simple',lesson_rights_reference='EDPIX Original: authored explanations and independently checked finite-set examples, 24 September 2026. No NCERT text or external questions copied.',published=true,classification_reference=classification_reference||jsonb_build_object('content_source','EDPIX Original','content_check','Authored examples and answers checked; curriculum decomposition remains pending editorial review') where id=cid;
 end loop;end $import$;
 ''')

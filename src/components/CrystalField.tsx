@@ -77,7 +77,7 @@ function Crystals({
     if (!mesh.current) return;
     const color = new THREE.Color();
     seeds.forEach((s, i) => {
-      color.set(s.d > 0.94 ? "#e9d7c6" : s.d > 0.6 ? "#b4bed9" : "#5e6f9e");
+      color.set(s.d > 0.94 ? "#f7c2ca" : s.d > 0.6 ? "#cc8db3" : "#837ab6");
       mesh.current!.setColorAt(i, color);
     });
     if (mesh.current.instanceColor)
@@ -175,7 +175,7 @@ function Crystals({
         <meshStandardMaterial
           metalness={0.72}
           roughness={0.2}
-          emissive="#6b79ae"
+          emissive="#9d85b6"
           emissiveIntensity={0.3}
         />
       </instancedMesh>
@@ -249,12 +249,12 @@ export default function CrystalField() {
               <directionalLight
                 position={[3, 4, 5]}
                 intensity={4}
-                color="#dae0ff"
+                color="#f7c2ca"
               />
               <pointLight
                 position={[-4, -1, 3]}
                 intensity={14}
-                color="#6175ff"
+                color="#cc8db3"
               />
               <Crystals progress={progress} count={count} />
             </Canvas>

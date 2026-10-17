@@ -1,3 +1,4 @@
+import Tutor from "../tutor/Tutor";
 import LearningResume from "../academic/LearningResume";
 import ExamCenter,{ExamSummary} from "../academic/Exams";
 import DoubtsInbox from "../academic/DoubtsInbox";
@@ -35,6 +36,7 @@ export default function WorkspaceRoutes() {
         <Route path="dashboard" element={<><AcademicDashboard/><LearningResume/><ExamSummary/></>} />
         <Route path="demo/dashboard" element={<Dashboard />} />
         <Route path="syllabus" element={<Syllabus/>} />
+        <Route path="tutor" element={<Tutor/>} />
         <Route path="courses" element={<LearningCourses/>} />
         <Route path="subjects/:subject" element={<SubjectJourney/>} />
         <Route path="demo/courses" element={<WorkspaceCourses/>} />

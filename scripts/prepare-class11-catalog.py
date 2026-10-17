@@ -40,12 +40,12 @@ for s in select * from jsonb_array_elements(doc->'subjects') loop
    ci:=0;ti:=0;
    for t in select * from jsonb_array_elements(h->'topics') loop
     ti:=ti+1;
-    insert into public.academic_topics(chapter_id,title,position,metadata) values(hid,t->>'title',ti,jsonb_build_object('verification_status','pending','classification','TIPIX editorial outline')) on conflict(chapter_id,title) do nothing;
+    insert into public.academic_topics(chapter_id,title,position,metadata) values(hid,t->>'title',ti,jsonb_build_object('verification_status','pending','classification','EDPIX editorial outline')) on conflict(chapter_id,title) do nothing;
     select id into strict tid from public.academic_topics where chapter_id=hid and title=t->>'title';
     for c in select * from jsonb_array_elements(t->'concepts') loop
      ci:=ci+1;
      insert into public.academic_concepts(curriculum_id,chapter_title,concept_title,subtopic,position,topic_id,classification_reference)
-     values(vid,h->>'title',c->>'title',t->>'title',ci,tid,jsonb_build_object('verification_status','pending','classification','TIPIX editorial outline','official_source_url',b->>'official_source_url','curriculum_version',doc->>'version'))
+     values(vid,h->>'title',c->>'title',t->>'title',ci,tid,jsonb_build_object('verification_status','pending','classification','EDPIX editorial outline','official_source_url',b->>'official_source_url','curriculum_version',doc->>'version'))
      on conflict(curriculum_id,chapter_title,concept_title) do nothing;
     end loop;
    end loop;

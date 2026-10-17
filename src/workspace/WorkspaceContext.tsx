@@ -182,7 +182,7 @@ export function WorkspaceProvider({ children }: { children: ReactNode }) {
       setState((s) => (s.exam?.submitted ? { ...s, exam: undefined } : s)),
     submitExam: () =>
       setState((s) =>
-        s.exam ? { ...s, exam: { ...s.exam, submitted: true } } : s,
+        s.exam && !s.exam.submitted ? { ...s, exam: { ...s.exam, submitted: true } } : s,
       ),
   };
   return <Context.Provider value={value}>{children}</Context.Provider>;

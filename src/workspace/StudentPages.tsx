@@ -675,7 +675,7 @@ export function Profile() {
           <div className="w-info-strip">
             <Settings2 size={18} />
             <p>
-              Contact TIPIX if your registered class or stream needs correcting.
+              Contact EDPIX if your registered class or stream needs correcting.
             </p>
           </div>
         </section>
@@ -738,7 +738,7 @@ export function WorkspaceSettings() {
         <p>
           The workspace follows your device’s reduced-motion setting. Keyboard
           focus, labeled fields, and responsive navigation are included. Change
-          your device’s motion preference to reduce animations throughout TIPIX.
+          your device’s motion preference to reduce animations throughout EDPIX.
         </p>
       </section>
       <section className="w-panel w-settings-panel">

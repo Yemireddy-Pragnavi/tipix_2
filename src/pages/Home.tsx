@@ -148,7 +148,7 @@ export default function Home() {
       </section>
       <section className="learning-intro content-width" id="how-it-works">
         <div data-reveal>
-          <Eyebrow>THE TIPIX WAY</Eyebrow>
+          <Eyebrow>THE EDPIX WAY</Eyebrow>
           <h2>
             Knowledge is connected.
             <br />

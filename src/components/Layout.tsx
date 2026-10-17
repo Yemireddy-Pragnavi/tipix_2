@@ -3,11 +3,11 @@ import { Link, NavLink, Outlet, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight } from "lucide-react";
 export function Logo() {
   return (
-    <Link to="/" className="logo" aria-label="TIPIX home">
+    <Link to="/" className="logo" aria-label="EDPIX home">
       <span className="logo-symbol" aria-hidden="true">
         ✳
       </span>
-      <span>TIPIX</span>
+      <span>EDPIX</span>
     </Link>
   );
 }
@@ -34,7 +34,7 @@ export default function Layout() {
               : location.pathname === "/forgot-password"
                 ? "Password recovery"
                 : "Every concept. Every possibility.";
-    document.title = `TIPIX — ${title}`;
+    document.title = `EDPIX — ${title}`;
   }, [location]);
   return (
     <>
@@ -91,7 +91,7 @@ export default function Layout() {
           <Link to="/courses">Courses</Link>
           <Link to="/for-schools">For schools</Link>
         </div>
-        <small>© {new Date().getFullYear()} TIPIX</small>
+        <small>© {new Date().getFullYear()} EDPIX</small>
       </footer>}
     </>
   );

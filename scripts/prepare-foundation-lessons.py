@@ -33,17 +33,17 @@ for x in select * from jsonb_array_elements(data) loop
   n:=7;
   for q in select * from jsonb_array_elements(x->'checks') loop
    n:=n+1;
-   insert into public.academic_learning_tasks(concept_id,position,title,blocks,check_prompt,check_options) values(c,n,'Concept check '||(n-7),jsonb_build_array(jsonb_build_object('type','paragraph','text','Concept Practice · Original TIPIX question. Your feedback and lesson position are saved. These learning checks do not award leaderboard points.')),q->>'prompt',q->'options') returning id into t;
+   insert into public.academic_learning_tasks(concept_id,position,title,blocks,check_prompt,check_options) values(c,n,'Concept check '||(n-7),jsonb_build_array(jsonb_build_object('type','paragraph','text','Concept Practice · Original EDPIX question. Your feedback and lesson position are saved. These learning checks do not award leaderboard points.')),q->>'prompt',q->'options') returning id into t;
    insert into tipix_private.academic_task_keys(task_id,answer,explanation) values(t,(q->>'answer')::integer,q->>'explanation');
   end loop;
-  update public.academic_concepts set lesson=x->>'explain',lesson_rights_reference='TIPIX Original: authored concept explanations and original exercises; not copied NCERT or examination questions.',published=true,classification_reference=classification_reference||jsonb_build_object('content_source','TIPIX Original','content_pack','foundation-v1','editorial_status','Original lesson; curriculum decomposition pending editorial review') where id=c;
+  update public.academic_concepts set lesson=x->>'explain',lesson_rights_reference='EDPIX Original: authored concept explanations and original exercises; not copied NCERT or examination questions.',published=true,classification_reference=classification_reference||jsonb_build_object('content_source','EDPIX Original','content_pack','foundation-v1','editorial_status','Original lesson; curriculum decomposition pending editorial review') where id=c;
   update public.academic_curriculum_versions set status='published' where id=v and status='candidate';
  end if;
  n:=0;
  for q in select * from jsonb_array_elements(x->'checks') loop
   n:=n+1;
   insert into public.academic_verified_question_bank(concept_id,source_id,question_type,question_text,options,marks,difficulty,source_url,license_code,rights_reference,fingerprint,position,hint)
-  values(c,sid,'mcq',q->>'prompt',q->'options',1,case when n=1 then 1 else 2 end,'https://tipix-learning-phase-one.vvreddy1584.chatgpt.site','TIPIX_ORIGINAL','Original TIPIX concept practice. Scored publication awaits staff review.',md5('foundation-v1:'||c::text||':'||(q->>'prompt')),n,'Review the key ideas and worked example for this concept.') on conflict(fingerprint) do nothing returning id into qid;
+  values(c,sid,'mcq',q->>'prompt',q->'options',1,case when n=1 then 1 else 2 end,'https://tipix-learning-phase-one.vvreddy1584.chatgpt.site','TIPIX_ORIGINAL','Original EDPIX concept practice. Scored publication awaits staff review.',md5('foundation-v1:'||c::text||':'||(q->>'prompt')),n,'Review the key ideas and worked example for this concept.') on conflict(fingerprint) do nothing returning id into qid;
   if qid is not null then insert into tipix_private.academic_answer_keys(question_id,answer,explanation) values(qid,q->'answer',q->>'explanation');end if;
  end loop;
 end loop;end $import$;''')

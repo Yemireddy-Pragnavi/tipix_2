@@ -10,6 +10,7 @@ import Schools from "./pages/Schools";
 import Auth from "./pages/Auth";
 import { ButtonLink } from "./components/UI";
 import "./styles.css";
+import "./edpix-theme.css";
 const WorkspaceRoutes = React.lazy(() => import("./workspace/WorkspaceRoutes"));
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -46,7 +47,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
             element={
               <div className="simple-page">
                 <h1>That page isn’t here yet.</h1>
-                <ButtonLink to="/">Back to TIPIX</ButtonLink>
+                <ButtonLink to="/">Back to EDPIX</ButtonLink>
               </div>
             }
           />

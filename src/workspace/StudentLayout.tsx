@@ -23,8 +23,10 @@ import {
 import { WorkspaceProvider, useWorkspace } from "./WorkspaceContext";
 import "./Workspace.css";
 import "../academic/LearningTheme.css";
+import "../edpix-theme.css";
 const links = [
   ["dashboard", "Dashboard", LayoutDashboard],
+  ["tutor", "AI Whiteboard", PenLine],
   ["courses", "Courses", BookOpen],
   ["syllabus", "Syllabus", BookOpen],
   ["practice", "Practice", PenLine],
@@ -54,7 +56,7 @@ function Shell() {
   useEffect(() => {
     setMenu(false);
     window.scrollTo(0, 0);
-    document.title = `${currentPage} — TIPIX`;
+    document.title = `${currentPage} — EDPIX`;
   }, [location.pathname, currentPage]);
   useEffect(() => {
     const model = (
@@ -101,8 +103,8 @@ function Shell() {
       </a>
       <aside className={`w-sidebar ${menu ? "open" : ""}`}>
         <div className="w-brand">
-          <Link to="/" aria-label="TIPIX home">
-            <span>✳</span>TIPIX
+          <Link to="/" aria-label="EDPIX home">
+            <span>✳</span>EDPIX
           </Link>
           <button
             aria-label="Close workspace menu"
@@ -189,7 +191,7 @@ function Shell() {
           >
             {motionPaused ? "Resume motion" : "Pause motion"}
           </button>
-          TIPIX · A little progress, a new possibility.
+          EDPIX · A little progress, a new possibility.
         </div>
       </div>
     </div>

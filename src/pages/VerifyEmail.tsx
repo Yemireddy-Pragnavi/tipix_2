@@ -49,7 +49,7 @@ export default function VerifyEmail({recovery=false}:{recovery?:boolean}) {
   return <div className="auth-v2 auth-cinematic"><Atmosphere/><section className="a-form-panel"><div className="a-form-container">
     <div className="a-verification-icon" aria-hidden="true">{verified?<LockKeyhole/>:<Mail/>}</div>
     <div className="a-step-enter"><h1>{verified?'Choose a new password.':recovery?'Recover your account.':'Check your email.'}</h1>
-    <p className="a-subtitle">{verified?'Use a strong password you haven’t used elsewhere.':'Enter the verification code from TIPIX to continue.'}</p>
+    <p className="a-subtitle">{verified?'Use a strong password you haven’t used elsewhere.':'Enter the verification code from EDPIX to continue.'}</p>
     <form onSubmit={submit}>
     {!verified ? <>
       <div className="a-field"><label htmlFor="verify-email">Email address</label><div className="a-input-wrap"><input id="verify-email" type="email" autoComplete="email" value={email} onChange={e=>{setEmail(e.target.value);setCode('');}} required maxLength={254}/></div></div>

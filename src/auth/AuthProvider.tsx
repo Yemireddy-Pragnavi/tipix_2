@@ -14,7 +14,7 @@ export async function studentProfile(user: User): Promise<StudentProfile> {
   const m = user.user_metadata;
   const grade = String(m.grade ?? '');
   if (!isGrade(grade) || (Number(grade) >= 11 && !isStream(m.stream)) || !['full_name','school_name','school_city'].every(k=> typeof m[k] === 'string' && m[k].trim().length >= 2))
-    throw new Error('Student details are missing. Contact TIPIX to complete your profile.');
+    throw new Error('Student details are missing. Contact EDPIX to complete your profile.');
   const record = {id:user.id,full_name:m.full_name.trim(),school_name:m.school_name.trim(),school_city:m.school_city.trim(),grade:Number(grade),stream:Number(grade)>=11?m.stream:null};
   const inserted = await supabase.from('tipix_student_profiles').insert(record).select(fields).single();
   if (inserted.error?.code === '23505') {

@@ -52,8 +52,8 @@ export default function Atmosphere() {
           smoothY * dot.depth;
         const alpha =
           0.25 + 0.35 * (0.5 + 0.5 * Math.sin(clock * 0.6 + dot.phase));
-        ctx.fillStyle = `rgba(183,201,255,${alpha})`;
-        ctx.shadowColor = "#819eff";
+        ctx.fillStyle = `rgba(247,194,202,${alpha})`;
+        ctx.shadowColor = "#cc8db3";
         ctx.shadowBlur = 8 * dot.depth;
         ctx.beginPath();
         ctx.arc(x, y, 0.7 + dot.depth * 1.4, 0, Math.PI * 2);

@@ -1,0 +1,13 @@
+import {useRef,useState,type PointerEvent} from 'react';
+import type {Board,Stroke} from './model';
+export default function Drawing({board,onChange,pen,reveal}:{board:Board;onChange:(b:Board)=>void;pen:boolean;reveal:number}){
+ const svg=useRef<SVGSVGElement>(null),current=useRef<Stroke|null>(null);const [draft,setDraft]=useState<Stroke|null>(null);
+ function point(e:PointerEvent):[number,number]{const m=svg.current?.getScreenCTM();if(!m)return [0,0];const p=new DOMPoint(e.clientX,e.clientY).matrixTransform(m.inverse());return [Math.max(0,Math.min(1000,Math.round(p.x))),Math.max(0,Math.min(800,Math.round(p.y)))];}
+ function finish(){const stroke=current.current;current.current=null;setDraft(null);if(stroke&&stroke.points.length>1)onChange({...board,strokes:[...(board.strokes||[]),stroke]});}
+ return <svg ref={svg} className={pen?'is-drawing':''} viewBox="0 0 1000 800" role="img" aria-label="Learning diagram. Use drawing controls and explanation text for details." onPointerDown={e=>{if(!pen||(board.strokes?.length||0)>=60)return;e.currentTarget.setPointerCapture(e.pointerId);current.current={points:[point(e)]};setDraft(current.current);}} onPointerMove={e=>{if(!current.current||current.current.points.length>=150)return;current.current={points:[...current.current.points,point(e)]};setDraft(current.current);}} onPointerUp={finish} onPointerCancel={()=>{current.current=null;setDraft(null);}}>
+ <defs><pattern id="et-grid" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#9d85b6" opacity=".2"/></pattern></defs><rect width="1000" height="800" fill="url(#et-grid)"/>
+ {(board.shapes||[]).slice(0,reveal).map(s=><g key={s.id} className="et-diagram-shape" stroke={s.color} fill="none" strokeWidth="2.5">{s.kind==='ellipse'?<ellipse cx={s.x+s.w/2} cy={s.y+s.h/2} rx={s.w/2} ry={s.h/2}/>:s.kind==='rect'?<rect x={s.x} y={s.y} width={s.w} height={s.h} rx="12"/>:s.kind==='line'?<line x1={s.x} y1={s.y} x2={s.x+s.w} y2={s.y+s.h}/>:null}{s.text&&<text x={s.x+(s.kind==='text'?0:s.w/2)} y={s.y+(s.kind==='text'?20:s.h/2)} textAnchor={s.kind==='text'?'start':'middle'} fill={s.color} stroke="none" fontSize="18">{s.text}</text>}</g>)}
+ {board.nodes.map(n=><g key={n.id}><rect x={n.x} y={n.y} width="230" height="145" rx="18" fill="#382040" stroke="#9d85b6"/><foreignObject x={n.x+16} y={n.y+16} width="198" height="113"><div className="et-node-text">{n.text}</div></foreignObject></g>)}
+ {[...(board.strokes||[]),...(draft?[draft]:[])].map((s,i)=><polyline key={i} points={s.points.map(p=>p.join(',')).join(' ')} fill="none" stroke="#f7c2ca" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round"/>)}
+ </svg>;
+}

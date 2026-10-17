@@ -13,6 +13,6 @@
 ## Blocked / not claimed complete
 - Mail delivery and actual user login remain unverified end-to-end; no user password or OTP is available in this test environment.
 - AI credentials GEMINI_API_KEY and GEMINI_MODEL have not been supplied/configured or live-tested. No mock AI response is displayed.
-- Full document ingestion, realtime voice, stroke drawing, diagram connectors, synchronized speech/animation, moderation/usage admin and curriculum expansion remain unimplemented.
+- Chat history, generated SVG diagram primitives, pen strokes, manual drawing replay, and browser read-aloud with pause/resume/stop are implemented. Real-time voice conversation, document ingestion, semantic speech/drawing synchronization, moderation/usage admin and curriculum expansion remain pending.
 - Browser QA unavailable in this session. No authenticated end-to-end pass is claimed.
 - React #185 was not reproduced. Repeated demo exam submission is now idempotent, but this is not evidence that it caused the reported error.

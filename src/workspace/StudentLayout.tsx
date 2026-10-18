@@ -113,13 +113,13 @@ function Shell() {
             <X size={20} />
           </button>
         </div>
-        <div className="w-space-label">YOUR LEARNING SPACE</div>
+        <div className="w-space-label">LEARN · EXPLORE · GROW</div>
         <nav aria-label="Student navigation">
-          {links.map(([path, label, Icon]) => (
+          {links.map(([path, label, Icon], index) => (<div className="ed-nav-item" key={path}>{[0,4,8,12].includes(index)&&<span className="ed-nav-heading">{index===0?"Workspace":index===4?"Practice & assessment":index===8?"Your progress":"Resources"}</span>}
             <NavLink key={path} title={label} aria-label={label} to={`/app/${path}`}>
               <Icon size={18} />
               <span>{label}</span>
-            </NavLink>
+            </NavLink></div>
           ))}
         </nav>
         <div className="w-sidebar-bottom">
@@ -175,7 +175,7 @@ function Shell() {
         <div className="w-preview-banner">
           <FlaskConical size={14} />
           <span>
-            Verified practice is saved to your account. Concept samplers and demo exams remain clearly labelled demonstrations.
+            Your learning is saved to your account. Demo activities are labelled separately.
           </span>
         </div>
         <main id="workspace-main" className="w-content">
